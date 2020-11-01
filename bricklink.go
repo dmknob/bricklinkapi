@@ -180,6 +180,19 @@ func (bl Bricklink) GetCategory(categoryID int) (response string, err error) {
 	return string(body), nil
 }
 
+// GetInventories issues a GET request to the Bricklink API and querys for user Inventories.
+func (bl Bricklink) GetInventories(categoryID int) (response string, err error) {
+	// build uri
+	uri := "/inventories/" + strconv.Itoa(categoryID)
+
+	body, err := bl.request.Request("GET", uri)
+	if err != nil {
+		return response, err
+	}
+
+	return string(body), nil
+}
+
 // helper function to validate a param
 func validateParam(param string, list []string) (err error) {
 	// parameter must be set
